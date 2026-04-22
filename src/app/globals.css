@@ -23,20 +23,19 @@
   --color-warning: #F59E0B;
   --color-error: #EF4444;
 
-  /* Typography */
-  --font-sans: "Inter", system-ui, sans-serif;
+  /* Typography Scale */
+  --text-h1: 2.25rem; /* 4xl */
+  --text-h1-md: 3.75rem; /* 6xl */
+  --text-h2: 1.875rem; /* 3xl */
+  --text-h2-md: 2.25rem; /* 4xl */
+  --text-h3: 1.25rem; /* xl */
+  --text-h3-md: 1.5rem; /* 2xl */
   
-  --text-hero: clamp(56px, 10vw, 72px);
-  --text-section: clamp(32px, 5vw, 40px);
-  --text-body: 16px;
-  --text-small: 14px;
+  --font-sans: "Inter", system-ui, sans-serif;
 
   /* Spacing */
-  --spacing-section: clamp(80px, 10vh, 120px);
-  --spacing-container: 24px;
-
-  /* Layout */
-  --width-container: 1200px;
+  --spacing-section-mobile: 4rem; /* py-16 */
+  --spacing-section-desktop: 6rem; /* py-24 */
 
   /* Radius */
   --radius-lg: 12px;
@@ -57,17 +56,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@layer base {
+  h1 {
+    @apply text-4xl md:text-6xl font-bold;
+  }
+  h2 {
+    @apply text-3xl md:text-4xl font-semibold;
+  }
+  h3 {
+    @apply text-xl md:text-2xl font-medium;
+  }
+  p {
+    @apply text-base text-gray-600;
+  }
+}
+
 @layer components {
-  .container-custom {
-    max-width: var(--width-container);
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: var(--spacing-container);
-    padding-right: var(--spacing-container);
+  .section-spacing {
+    @apply py-16 md:py-24;
+  }
+  
+  .text-body {
+    @apply text-base text-gray-600;
   }
 
-  .section-padding {
-    padding-top: var(--spacing-section);
-    padding-bottom: var(--spacing-section);
+  .text-small {
+    @apply text-sm text-gray-500;
   }
 }
