@@ -1,22 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  /* Brand Colors */
-  --color-brand-primary: #8B5CF6;
-  --color-brand-hover: #7C3AED;
-  --color-brand-active: #6D28D9;
+  /* Brand Colors - Midnight Emerald */
+  --color-brand-primary: #10B981;
+  --color-brand-hover: #059669;
+  --color-brand-active: #047857;
+  --color-brand-accent: #3B82F6;
 
-  /* Gray Scale */
-  --color-gray-900: #111827;
-  --color-gray-800: #1F2937;
-  --color-gray-700: #374151;
-  --color-gray-600: #4B5563;
-  --color-gray-500: #6B7280;
-  --color-gray-400: #9CA3AF;
-  --color-gray-300: #D1D5DB;
-  --color-gray-200: #E5E7EB;
-  --color-gray-100: #F3F4F6;
-  --color-gray-50: #F9FAFB;
+  /* Neutral Scale - Optimized for Deep Dark UI */
+  --color-slate-950: #020617;
+  --color-slate-900: #0F172A;
+  --color-slate-800: #1E293B;
+  --color-slate-700: #334155;
+  --color-slate-600: #475569;
+  --color-slate-500: #64748B;
+  --color-slate-400: #94A3B8;
+  --color-slate-300: #CBD5E1;
+  --color-slate-200: #E2E8F0;
+  --color-slate-100: #F1F5F9;
+  --color-slate-50: #F8FAFC;
 
   /* Semantic Colors */
   --color-success: #10B981;
@@ -24,28 +27,36 @@
   --color-error: #EF4444;
 
   /* Typography Scale */
-  --text-h1: 2.25rem; /* 4xl */
-  --text-h1-md: 3.75rem; /* 6xl */
-  --text-h2: 1.875rem; /* 3xl */
-  --text-h2-md: 2.25rem; /* 4xl */
-  --text-h3: 1.25rem; /* xl */
-  --text-h3-md: 1.5rem; /* 2xl */
-  
   --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
 
-  /* Spacing */
-  --spacing-section-mobile: 4rem; /* py-16 */
-  --spacing-section-desktop: 6rem; /* py-24 */
+  --text-h1: 2.5rem;
+  --text-h1-md: 4.5rem;
+  --text-h2: 2rem;
+  --text-h2-md: 3rem;
+  --text-h3: 1.25rem;
+  --text-h3-md: 1.5rem;
 
   /* Radius */
+  --radius-3xl: 32px;
+  --radius-2xl: 24px;
+  --radius-xl: 16px;
   --radius-lg: 12px;
   --radius-md: 8px;
   --radius-sm: 4px;
+
+  /* Shadows - Modern Soft Glowing Shadows */
+  --shadow-premium-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-premium-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  --shadow-premium-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+  --shadow-premium-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+  --shadow-emerald-glow: 0 0 20px -5px rgba(16, 185, 129, 0.3);
 }
 
 :root {
-  --background: var(--color-gray-50);
-  --foreground: var(--color-gray-900);
+  --background: var(--color-slate-950);
+  --foreground: var(--color-slate-50);
+  --border-subtle: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -57,30 +68,44 @@ body {
 }
 
 @layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight;
+  }
+  
   h1 {
-    @apply text-4xl md:text-6xl font-bold;
+    @apply text-4xl md:text-7xl font-extrabold text-white;
   }
   h2 {
-    @apply text-3xl md:text-4xl font-semibold;
+    @apply text-3xl md:text-5xl font-bold text-white;
   }
   h3 {
-    @apply text-xl md:text-2xl font-medium;
+    @apply text-xl md:text-2xl font-bold text-white;
   }
   p {
-    @apply text-base text-gray-600;
+    @apply text-lg leading-relaxed text-slate-400;
   }
 }
 
 @layer components {
   .section-spacing {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-40;
   }
   
-  .text-body {
-    @apply text-base text-gray-600;
+  .glass-card {
+    @apply bg-slate-900/50 backdrop-blur-xl border border-white/10 rounded-2xl shadow-premium-lg;
   }
 
-  .text-small {
-    @apply text-sm text-gray-500;
+  .glass-nav {
+    @apply bg-slate-950/70 backdrop-blur-md border-b border-white/5;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-white to-slate-500;
+  }
+
+  .text-emerald-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-emerald-400 to-emerald-600;
   }
 }
+

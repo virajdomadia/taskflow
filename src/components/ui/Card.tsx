@@ -11,15 +11,17 @@ function cn(...inputs: ClassValue[]) {
 }
 
 interface CardProps extends HTMLMotionProps<"div"> {
-  variant?: "feature" | "testimonial" | "pricing";
+  variant?: "default" | "feature" | "testimonial" | "pricing" | "highlight";
   children: React.ReactNode;
 }
 
-export const Card = ({ className, variant = "feature", children, ...props }: CardProps) => {
+export const Card = ({ className, variant = "default", children, ...props }: CardProps) => {
   const variants = {
-    feature: "bg-white border border-gray-200 p-8 hover:border-brand-primary/50",
-    testimonial: "bg-gray-50 border-none p-8 italic text-gray-700",
-    pricing: "bg-white border-2 border-gray-200 p-10 hover:border-brand-primary",
+    default: "bg-slate-900/40 backdrop-blur-xl border border-white/5 p-6 shadow-premium-sm",
+    feature: "bg-slate-900/40 backdrop-blur-xl border border-white/5 p-8 shadow-premium-sm hover:border-emerald-500/30",
+    testimonial: "bg-slate-900/20 backdrop-blur-md border border-white/5 p-8 text-slate-300",
+    pricing: "bg-slate-900/60 backdrop-blur-xl border border-white/10 p-10 shadow-premium-md",
+    highlight: "bg-slate-900/80 backdrop-blur-2xl border-2 border-emerald-500/50 p-10 shadow-emerald-glow relative overflow-hidden",
   };
 
   return (
@@ -27,9 +29,11 @@ export const Card = ({ className, variant = "feature", children, ...props }: Car
       variants={fadeUp}
       initial="initial"
       whileInView="animate"
+      whileHover={{ y: -6, boxShadow: "var(--shadow-premium-lg)" }}
       viewport={{ once: true }}
+
       className={cn(
-        "rounded-lg transition-all duration-300 shadow-sm hover:shadow-md",
+        "rounded-2xl transition-all duration-300",
         variants[variant],
         className
       )}
@@ -39,3 +43,4 @@ export const Card = ({ className, variant = "feature", children, ...props }: Car
     </motion.div>
   );
 };
+

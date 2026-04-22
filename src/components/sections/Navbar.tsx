@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Zap } from 'lucide-react';
 import { Container } from '../ui/Container';
+import { Button } from '../ui/Button';
 
 const navLinks = [
   { name: 'Features', href: '#features' },
@@ -17,13 +18,15 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full glass-nav">
       <Container>
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <Zap className="h-6 w-6 text-brand-primary" fill="currentColor" />
-            <span className="text-xl font-bold tracking-tight text-gray-900">TaskFlow</span>
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="bg-emerald-500 p-1.5 rounded-lg group-hover:scale-110 group-hover:shadow-emerald-glow transition-all duration-200">
+              <Zap className="h-5 w-5 text-slate-950" fill="currentColor" />
+            </div>
+            <span className="text-xl font-bold tracking-tight text-white">TaskFlow</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -32,7 +35,7 @@ export const Navbar = () => {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-gray-600 transition-colors hover:text-brand-primary"
+                className="text-sm font-semibold text-slate-400 transition-colors hover:text-emerald-400"
               >
                 {link.name}
               </Link>
@@ -41,18 +44,15 @@ export const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <Link
-              href="#get-started"
-              className="inline-flex items-center justify-center rounded-lg bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-hover focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2"
-            >
+            <Button variant="primary" size="sm">
               Get Started
-            </Link>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 md:hidden"
+            className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-white/5 md:hidden"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -64,31 +64,27 @@ export const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="border-b border-gray-200 bg-white md:hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="border-b border-white/5 bg-slate-950/95 backdrop-blur-xl md:hidden"
           >
-            <Container className="py-6">
-              <nav className="flex flex-col gap-4">
+            <Container className="py-8">
+              <nav className="flex flex-col gap-6">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="text-base font-medium text-gray-600 transition-colors hover:text-brand-primary"
+                    className="text-lg font-semibold text-slate-400 transition-colors hover:text-emerald-400"
                   >
                     {link.name}
                   </Link>
                 ))}
-                <hr className="my-2 border-gray-100" />
-                <Link
-                  href="#get-started"
-                  onClick={() => setIsOpen(false)}
-                  className="inline-flex items-center justify-center rounded-lg bg-brand-primary px-5 py-3 text-base font-semibold text-white transition-colors hover:bg-brand-hover"
-                >
+                <hr className="border-white/5" />
+                <Button variant="primary" size="lg" className="w-full">
                   Get Started
-                </Link>
+                </Button>
               </nav>
             </Container>
           </motion.div>
@@ -97,3 +93,4 @@ export const Navbar = () => {
     </header>
   );
 };
+

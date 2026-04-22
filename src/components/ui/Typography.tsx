@@ -13,13 +13,13 @@ interface TypographyProps {
 }
 
 export const HeroTitle = ({ children, className, as: Component = "h1" }: TypographyProps) => (
-  <Component className={cn("text-hero font-bold tracking-tight text-gray-900", className)}>
+  <Component className={cn("text-hero md:text-hero font-bold tracking-tight text-gray-900", className)}>
     {children}
   </Component>
 );
 
 export const SectionTitle = ({ children, className, as: Component = "h2" }: TypographyProps) => (
-  <Component className={cn("text-section font-bold tracking-tight text-gray-900", className)}>
+  <Component className={cn("text-section md:text-section font-bold tracking-tight text-gray-900", className)}>
     {children}
   </Component>
 );
